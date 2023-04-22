@@ -1,39 +1,46 @@
 package com.ashokit.user.entity;
 
-import java.util.Date;
+import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Email;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name="USERDETAILS")
+@Table(name="USER_ACCOUNTS")
 public class UserDetails {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue
 	private Integer userId;
 	
 	private String firstName;
 	
 	private String lastName;
 	
-	@NotNull
+	@Column(unique = true)
+	@Email
 	private String userEmail;
 	
-	private String userPassword;
+	@Column(name="USER_PWD")
+	private String pazzword;
 	
-	private Long userMobile;
+	@Column(name="USER_MOBILE")
+	private Long phno;
 	
-	private Date dateOfBirth;
+	@Column(name="DOB")
+	private LocalDate dob;
 	
-	private Boolean gender;
+	private String gender;
 	
 	private Integer cityId;
 	
@@ -41,10 +48,14 @@ public class UserDetails {
 	
 	private Integer countryId;
 	
-	private Boolean accountStatus;
+	private String accStatus;
 	
-	private Date createdDate;
+	@Column(name="CREATED_DATE", updatable=false)
+	@CreationTimestamp
+	private LocalDate createdDate;
 	
-	private Date updatedDate;
+	@Column(name="UPDATED_DATE", insertable = false)
+	@UpdateTimestamp
+	private LocalDate updatedDate;
 	
 }

@@ -8,11 +8,13 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="COUNTRY_DETAILS")
+@Table(name="COUNTRY_MASTER")
 public class CountryMaster {
 
 	@Id
 	private Integer countryId;
 	
 	private String countryName;
+	
+	private String countryCode;
 }
